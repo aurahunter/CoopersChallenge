@@ -340,8 +340,7 @@ export default function TodoBoard({ embedded = false }) {
             To-do List
           </h2>
           <p className="todo-board__intro">
-            Arraste pelo ícone à esquerda para definir prioridades (salva no servidor). Clique no
-            texto para editar; passe o mouse para apagar.
+            Arraste para reordenar. Clique no texto para editar.
           </p>
         </>
       ) : null}

@@ -8,9 +8,6 @@ export function isContactEmailConfigured() {
   return hasSmtpConfig();
 }
 
-/**
- * @param {{ name: string; email: string; phone: string; message: string }} payload
- */
 export async function sendContactEmail(payload) {
   const to = process.env.CONTACT_TO_EMAIL?.trim() || "coopers@coopers.pro";
   const { name, email, phone, message } = payload;

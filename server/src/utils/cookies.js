@@ -1,4 +1,3 @@
-/** Opções do cookie de sessão (JWT httpOnly). */
 export function getAuthCookieOptions() {
   const isProd = process.env.NODE_ENV === "production";
   const crossSite =

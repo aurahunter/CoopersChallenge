@@ -3,9 +3,6 @@ import { useAuth } from "../../context/useAuth.js";
 import { useFocusTrap } from "../../hooks/useFocusTrap.js";
 import AuthPanel from "./AuthPanel.jsx";
 
-/**
- * Modal de login alinhado ao protótipo (sobre o conteúdo).
- */
 export default function LoginModal({ open, onClose }) {
   const { login } = useAuth();
   const titleId = useId();

@@ -1,10 +1,5 @@
 const base = (import.meta.env.VITE_API_URL || "http://localhost:4000").replace(/\/$/, "");
 
-/**
- * Chama a API com cookies (sessão JWT httpOnly).
- * @param {string} path - ex: "/api/auth/me"
- * @param {RequestInit} options
- */
 export async function api(path, options = {}) {
   const url = `${base}${path.startsWith("/") ? path : `/${path}`}`;
   const headers = {

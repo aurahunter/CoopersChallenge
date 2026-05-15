@@ -1,7 +1,3 @@
-/**
- * Origens permitidas no CORS (credenciais + cookies).
- * CLIENT_ORIGIN pode ser uma URL ou várias separadas por vírgula.
- */
 export function getCorsOrigin() {
   const raw = process.env.CLIENT_ORIGIN?.trim();
   if (!raw) {

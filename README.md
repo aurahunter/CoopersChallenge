@@ -3,7 +3,8 @@
 Monorepo: **React (Vite)** em `client/` e **Node (Express)** em `server/`, com **Prisma** + **PostgreSQL**.
 
 **Entrega:** preencha [ENTREGA.md](./ENTREGA.md) com os links públicos.  
-**Relatório do processo:** [PROCESSO.md](./PROCESSO.md).
+**Relatório do processo:** [PROCESSO.md](./PROCESSO.md).  
+**Deploy (guia detalhado):** [DEPLOY.md](./DEPLOY.md).
 
 ## Funcionalidades
 

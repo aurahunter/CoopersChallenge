@@ -6,3 +6,8 @@ server/dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# arquivos temporários locais
+tmp-*.html
+tmp-*.js
+tmp-*.json
