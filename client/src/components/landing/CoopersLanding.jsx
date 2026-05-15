@@ -100,6 +100,8 @@ export default function CoopersLanding() {
   const scrollTargetRef = useRef(null);
   const activeSlideRef = useRef(0);
 
+  const closeLoginModal = useCallback(() => setLoginOpen(false), []);
+
   useEffect(() => {
     activeSlideRef.current = activeSlide;
   }, [activeSlide]);
@@ -292,10 +294,7 @@ export default function CoopersLanding() {
         </div>
       </header>
 
-      <LoginModal
-        open={loginOpen && !user}
-        onClose={() => setLoginOpen(false)}
-      />
+      <LoginModal open={loginOpen && !user} onClose={closeLoginModal} />
 
       <main id="conteudo-principal">
         <section

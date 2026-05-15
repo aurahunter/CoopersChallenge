@@ -22,11 +22,14 @@ export default function LoginModal({ open, onClose }) {
     onClose();
   }, [onClose]);
 
+  const closeModalRef = useRef(closeModal);
+  closeModalRef.current = closeModal;
+
   useEffect(() => {
     if (!open) return undefined;
     function onKeyDown(e) {
       if (e.key === "Escape") {
-        closeModal();
+        closeModalRef.current();
       }
     }
     document.addEventListener("keydown", onKeyDown);
@@ -40,7 +43,7 @@ export default function LoginModal({ open, onClose }) {
       document.body.style.overflow = prevOverflow;
       cancelAnimationFrame(t);
     };
-  }, [open, closeModal]);
+  }, [open]);
 
   if (!open) return null;
 
