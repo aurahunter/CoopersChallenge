@@ -1,0 +1,383 @@
+/* To-do board — alinhado ao protótipo (verde / laranja / cartões) */
+
+.todo-board {
+  width: 100%;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.todo-board__heading {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  color: var(--text-h);
+}
+
+.todo-board__intro {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  max-width: 36rem;
+}
+
+.todo-board__error {
+  margin: 0 0 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.todo-board__loading {
+  margin: 0;
+  color: var(--text);
+}
+
+.todo-board__columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .todo-board__columns {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.todo-card {
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  padding: 1.25rem 1rem 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid #f97316;
+}
+
+.todo-card--done {
+  border-top-color: #4ac959;
+}
+
+.todo-card__head {
+  margin-bottom: 1rem;
+}
+
+.todo-card__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.todo-card__subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.todo-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 2rem;
+}
+
+.todo-card__empty {
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #888;
+  list-style: none;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.25rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.task-row--with-drag {
+  grid-template-columns: auto auto 1fr auto;
+}
+
+.task-row:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.task-row--dragging {
+  opacity: 0.95;
+  z-index: 2;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.task-row__drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.15rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: #666;
+  cursor: grab;
+  touch-action: none;
+}
+
+.task-row__drag:active {
+  cursor: grabbing;
+}
+
+.task-row__drag:focus-visible {
+  outline: 2px solid #4ac959;
+  outline-offset: 2px;
+}
+
+.task-row__drag-icon {
+  display: block;
+  width: 12px;
+  height: 16px;
+  background: repeating-linear-gradient(
+    to bottom,
+    currentColor 0 2px,
+    transparent 2px 5px
+  );
+  opacity: 0.55;
+}
+
+.task-row__check {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.task-row__check input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.task-row__check-ui {
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: block;
+  flex-shrink: 0;
+}
+
+.task-row--done .task-row__check-ui {
+  border-color: #4ac959;
+  background: #4ac959;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.task-row--done .task-row__check input:checked + .task-row__check-ui {
+  background: #4ac959;
+}
+
+.task-row--pending .task-row__check input:focus-visible + .task-row__check-ui,
+.task-row--done .task-row__check input:focus-visible + .task-row__check-ui {
+  outline: 2px solid #4ac959;
+  outline-offset: 2px;
+}
+
+.task-row__body {
+  min-width: 0;
+}
+
+.task-row__title {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #111;
+  cursor: text;
+  padding: 0.25rem 0;
+  border-radius: 4px;
+}
+
+.task-row__title:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.task-row__title:focus-visible {
+  outline: 2px solid #4ac959;
+  outline-offset: 2px;
+}
+
+.task-row--done .task-row__title {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+.task-row--done .task-row__input {
+  text-decoration: none;
+  color: #111;
+}
+
+.task-row__input {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.task-row__delete {
+  opacity: 0;
+  pointer-events: none;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 0.7rem;
+  text-transform: lowercase;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.task-row:hover .task-row__delete,
+.task-row:focus-within .task-row__delete {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.task-row__delete:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  outline: 2px solid #4ac959;
+  outline-offset: 2px;
+}
+
+.todo-card__add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.todo-card__add input {
+  flex: 1 1 8rem;
+  min-width: 0;
+  font: inherit;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.todo-card__add-btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  border: none;
+  background: #4ac959;
+  color: #fff;
+  cursor: pointer;
+}
+
+.todo-card__add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.todo-card__erase {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.55rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-card__erase:hover {
+  background: #333;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .todo-card {
+    background: #1a1a1a;
+    color: #f3f4f6;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .todo-card__subtitle {
+    color: #9ca3af;
+  }
+
+  .task-row__title {
+    color: #f3f4f6;
+  }
+
+  .task-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .task-row__input {
+    background: #111;
+    border-color: #444;
+    color: #fff;
+  }
+
+  .task-row--done .task-row__title {
+    color: #9ca3af;
+  }
+
+  .task-row--done .task-row__input {
+    color: #fff;
+  }
+
+  .todo-card__add input {
+    background: #111;
+    border-color: #444;
+    color: #fff;
+  }
+
+  .task-row--dragging {
+    background: rgba(30, 30, 30, 0.95);
+  }
+
+  .task-row__drag {
+    color: #9ca3af;
+  }
+}

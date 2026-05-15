@@ -1,0 +1,18 @@
+# Deploy da API no Render (https://render.com)
+# 1. Conecte o repositório e use "Blueprint" ou crie Web Service manualmente apontando para /server
+# 2. Defina as variáveis sensíveis no painel (DATABASE_URL, JWT_SECRET, CLIENT_ORIGIN, SMTP…)
+
+services:
+  - type: web
+    name: coopers-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install && npx prisma generate && npx prisma db push
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
