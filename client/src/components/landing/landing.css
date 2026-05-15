@@ -385,6 +385,16 @@
   margin-top: 0;
 }
 
+.coopers-todo-embed .todo-board__heading,
+.coopers-todo-embed .todo-board__intro,
+.coopers-todo-embed .todo-board__loading {
+  color: var(--coopers-white);
+}
+
+.coopers-todo-embed .todo-board__intro {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* ---------- good things ---------- */
 .coopers-good {
   position: relative;

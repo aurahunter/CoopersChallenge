@@ -17,7 +17,8 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (user) {
-      navigate("/app", { replace: true });
+      navigate("/", { replace: true });
+      window.location.hash = "todo-list";
     }
   }, [user, navigate]);
 
@@ -34,7 +35,8 @@ export default function RegisterPage() {
     setSubmitting(true);
     try {
       await register(email.trim(), password);
-      navigate("/app", { replace: true });
+      navigate("/", { replace: true });
+      window.location.hash = "todo-list";
     } catch (err) {
       setError(err.message || "Não foi possível cadastrar");
     } finally {

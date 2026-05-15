@@ -19,7 +19,12 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (user) {
-      navigate(from || "/app", { replace: true });
+      if (from) {
+        navigate(from, { replace: true });
+        return;
+      }
+      navigate("/", { replace: true });
+      window.location.hash = "todo-list";
     }
   }, [user, from, navigate]);
 

@@ -334,50 +334,51 @@
   border: 0;
 }
 
+/* Modo escuro do SO só na faixa preta da landing (não em /app com fundo branco) */
 @media (prefers-color-scheme: dark) {
-  .todo-card {
+  .coopers-todo-band .todo-card {
     background: #1a1a1a;
     color: #f3f4f6;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
-  .todo-card__subtitle {
+  .coopers-todo-band .todo-card__subtitle {
     color: #9ca3af;
   }
 
-  .task-row__title {
+  .coopers-todo-band .task-row__title {
     color: #f3f4f6;
   }
 
-  .task-row:hover {
+  .coopers-todo-band .task-row:hover {
     background: rgba(255, 255, 255, 0.05);
   }
 
-  .task-row__input {
+  .coopers-todo-band .task-row__input {
     background: #111;
     border-color: #444;
     color: #fff;
   }
 
-  .task-row--done .task-row__title {
+  .coopers-todo-band .task-row--done .task-row__title {
     color: #9ca3af;
   }
 
-  .task-row--done .task-row__input {
+  .coopers-todo-band .task-row--done .task-row__input {
     color: #fff;
   }
 
-  .todo-card__add input {
+  .coopers-todo-band .todo-card__add input {
     background: #111;
     border-color: #444;
     color: #fff;
   }
 
-  .task-row--dragging {
+  .coopers-todo-band .task-row--dragging {
     background: rgba(30, 30, 30, 0.95);
   }
 
-  .task-row__drag {
+  .coopers-todo-band .task-row__drag {
     color: #9ca3af;
   }
 }
